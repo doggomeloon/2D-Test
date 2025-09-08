@@ -28,13 +28,13 @@ public class InfiniteParallax : MonoBehaviour
         lastCameraPosition = cameraTransform.position;
 
         // Reposition for infinite scrolling
-        if (cameraTransform.position.x > transform.position.x + spriteWidth*2)
+        if (cameraTransform.position.x > transform.position.x + spriteWidth)
         {
-            transform.position += new Vector3(spriteWidth, 0, 0);
+            transform.position += new Vector3(spriteWidth*2, 0, 0);
         }
-        else if (cameraTransform.position.x < transform.position.x - spriteWidth*2)
+        else if (cameraTransform.position.x < transform.position.x - spriteWidth)
         {
-            transform.position -= new Vector3(spriteWidth, 0, 0);
+            transform.position -= new Vector3(spriteWidth*2, 0, 0);
         }
     }
 }
