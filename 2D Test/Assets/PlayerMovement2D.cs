@@ -66,20 +66,20 @@ public class PlayerMovement2D : MonoBehaviour
         // Horizontal movement with accel/decel and reduced air control
         float target = moveInput * moveSpeed;
         float rate = (Mathf.Abs(target) > 0.01f ? accel : decel) * (grounded ? 1f : airControl);
-        float vx = Mathf.MoveTowards(rb.velocity.x, target, rate * Time.fixedDeltaTime);
+        float vx = Mathf.MoveTowards(rb.linearVelocity.x, target, rate * Time.fixedDeltaTime);
 
         // Jump if buffered & within coyote window
         if (jumpBufferTimer > 0f && coyoteTimer > 0f)
         {
             float g = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
             float jumpVel = Mathf.Sqrt(2f * g * jumpHeight);
-            rb.velocity = new Vector2(vx, jumpVel);
+            rb.linearVelocity = new Vector2(vx, jumpVel);
             jumpBufferTimer = 0f;
             coyoteTimer = 0f;
         }
         else
         {
-            rb.velocity = new Vector2(vx, Mathf.Max(rb.velocity.y, maxFallSpeed));
+            rb.linearVelocity = new Vector2(vx, Mathf.Max(rb.linearVelocity.y, maxFallSpeed));
         }
     }
 
