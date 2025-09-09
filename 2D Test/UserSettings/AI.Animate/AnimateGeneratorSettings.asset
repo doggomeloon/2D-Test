@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 53
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2c39d77ee043afaec6cf75d69446f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Animate::Unity.AI.Animate.Services.SessionPersistence.AnimateGeneratorSettings
+  m_Session:
+    settings:
+      lastSelectedModels:
+        serializedData:
+        - key: 0
+          value:
+            rid: 1231347675066269944
+        - key: 1
+          value:
+            rid: 1231347675066269945
+      previewSettings:
+        sizeFactor: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1231347675066269944
+      type: {class: ModelSelection, ns: Unity.AI.Animate.Services.Stores.States, asm: Unity.AI.Animate}
+      data:
+        modelID: a9c27ca4-3ec9-43e8-96cd-ee891aba64c5
+    - rid: 1231347675066269945
+      type: {class: ModelSelection, ns: Unity.AI.Animate.Services.Stores.States, asm: Unity.AI.Animate}
+      data:
+        modelID: 
