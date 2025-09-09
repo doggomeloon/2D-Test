@@ -24,7 +24,7 @@ public class InfiniteParallax : MonoBehaviour
     void Update()
     {
         Vector3 delta = cameraTransform.position - lastCameraPosition;
-        transform.position += new Vector3(delta.x * parallaxFactor, 0, 0);
+        transform.position += new Vector3(delta.x * -parallaxFactor, delta.y * -parallaxFactor, 0);
         lastCameraPosition = cameraTransform.position;
 
         // Reposition for infinite scrolling

@@ -54,7 +54,7 @@ public class PlayerMovement2D : MonoBehaviour
         moveInput = moveAction.ReadValue<Vector2>().x;
 
         if (jumpAction.triggered) jumpBufferTimer = jumpBuffer;
-        else                      jumpBufferTimer -= Time.unscaledDeltaTime;
+        else jumpBufferTimer -= Time.unscaledDeltaTime;
     }
 
     void FixedUpdate()
