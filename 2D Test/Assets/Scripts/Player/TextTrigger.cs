@@ -1,30 +1,37 @@
 using UnityEngine;
-using TMPro; // if you use TextMeshPro
+using TMPro;
+using System.Threading.Tasks;
+using System.Collections;
 
 public class TextTrigger : MonoBehaviour
 {
-    public GameObject textBox; // assign your UI panel here
-    public string message;     // the message for this zone
+    public GameObject textBox; // Text box
+    public string message;     // the text for the box
     private TextMeshProUGUI textComponent;
 
     void Start()
     {
-        if (textBox != null)
+        textComponent = textBox.GetComponentInChildren<TextMeshProUGUI>();
+        textBox.SetActive(false); // hide at start
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        textComponent.text = "";
         {
-            textComponent = textBox.GetComponentInChildren<TextMeshProUGUI>();
-            textBox.SetActive(false); // hide at start
+            textBox.SetActive(true);
+            StartCoroutine(TypeText());
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private IEnumerator TypeText()
     {
-        if (other.CompareTag("Player"))
+        
+        for (int i = 0; i < message.Length; i++)
         {
-            if (textBox != null)
-            {
-                textComponent.text = message;
-                textBox.SetActive(true);
-            }
+            textComponent.text += message[i];
+            yield return new WaitForSeconds(0.03f);
         }
     }
 
@@ -35,6 +42,7 @@ public class TextTrigger : MonoBehaviour
             if (textBox != null)
             {
                 textBox.SetActive(false);
+                
             }
         }
     }
