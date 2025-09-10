@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement2D : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Move & Jump")]
     public float moveSpeed = 8f;
