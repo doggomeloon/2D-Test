@@ -3,9 +3,14 @@ using UnityEngine;
 public class DialogueUI : MonoBehaviour
 {
     public RectTransform dialogueBox;
-    public float slideSpeed = 500f;
-
+    public float zoomSpeed = 8f;
     private bool isVisible = false;
+
+
+    void Start()
+    {
+        isVisible = false;
+    }
 
     void Update()
     {
@@ -19,17 +24,17 @@ public class DialogueUI : MonoBehaviour
     {
         isVisible = !isVisible;
         StopAllCoroutines();
-        StartCoroutine(Slide(isVisible ? 0 : -dialogueBox.rect.height));
+        StartCoroutine(Zoom(isVisible ? Vector3.one : Vector3.zero));
     }
 
-    private System.Collections.IEnumerator Slide(float targetY)
+    private System.Collections.IEnumerator Zoom(Vector3 targetScale)
     {
-        while (Mathf.Abs(dialogueBox.anchoredPosition.y - targetY) > 0.1f)
+        while (dialogueBox.localScale != targetScale)
         {
-            dialogueBox.anchoredPosition = Vector2.MoveTowards(
-                dialogueBox.anchoredPosition,
-                new Vector2(0, targetY),
-                slideSpeed * Time.deltaTime
+            dialogueBox.localScale = Vector3.Lerp(
+                dialogueBox.localScale,
+                targetScale,
+                Time.deltaTime * zoomSpeed
             );
             yield return null;
         }
