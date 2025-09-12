@@ -37,7 +37,7 @@ public class TextTrigger : MonoBehaviour
     {
         if (isInArea)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 textComponent.text = "";
                 portraitPanel.sprite = portrait;
