@@ -23,6 +23,7 @@ public class Health : MonoBehaviour
         {
             GameObject heart = Instantiate(HeartTemplate); // Duplicate template
             heart.transform.SetParent(HealthBackground.transform); // Move it to the correct location
+            heart.name = "heart"; // Renaming it so it looks better
         }
         else if (initHealth > GlobalVariables.health && initHealth > 0) //When hearts are removed
         {
