@@ -6,16 +6,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Move & Jump")]
     public float moveSpeed = 8f;
-    public float jumpHeight = 3f;          // in world units
+    public float jumpHeight = 3f; // in world units
 
     [Header("Grounding")]
-    public Transform groundCheck;          // empty child at feet
+    public Transform groundCheck; // empty child at feet
     public float groundCheckRadius = 0.2f;
     public LayerMask groundMask;
 
     [Header("Feel")]
-    public float coyoteTime = 0.1f;        // grace after leaving ground
-    public float jumpBuffer = 0.1f;        // grace before landing
+    public float coyoteTime = 0.1f;// grace after leaving ground
+    public float jumpBuffer = 0.1f;// grace before landing
     public float accel = 100f;
     public float decel = 100f;
     public float airControl = 0.6f;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
 
-    private float moveInput;               // -1..1
+    private float moveInput;// -1..1
     private float coyoteTimer;
     private float jumpBufferTimer;
 
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;     // smooth render between physics steps
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate; // smooth render between physics steps
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         // New Input System bindings (A/D + arrows)
@@ -53,12 +53,18 @@ public class PlayerMovement : MonoBehaviour
         // Read input in Update (frame-rate), apply in FixedUpdate (physics)
         moveInput = moveAction.ReadValue<Vector2>().x;
 
-        if (jumpAction.triggered) jumpBufferTimer = jumpBuffer;
+        if (jumpAction.triggered) { jumpBufferTimer = jumpBuffer; }
         else jumpBufferTimer -= Time.unscaledDeltaTime;
     }
 
     void FixedUpdate()
     {
+        if (GlobalVariables.focusLocked) // Prevents movement when focus locked
+        {
+            rb.linearVelocity = Vector2.zero; 
+            return; 
+        }
+
         // Ground check
         bool grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
         coyoteTimer = grounded ? coyoteTime : coyoteTimer - Time.fixedDeltaTime;
@@ -81,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(vx, Mathf.Max(rb.linearVelocity.y, maxFallSpeed));
         }
+
+        
     }
 
     void OnDrawGizmosSelected()

@@ -17,7 +17,11 @@ public class TextTrigger : MonoBehaviour
 
     private bool isInArea = false;
     public float zoomSpeed = 8f;
+
+    public float textSpeed = 0.03f;
     private bool isVisible = false;
+
+    public bool requiresFocus = false; //If true, the player will be unable to move while interacted
 
 
 
@@ -35,8 +39,9 @@ public class TextTrigger : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                ToggleDialogue();
+                textComponent.text = "";
                 portraitPanel.sprite = portrait;
+                ToggleDialogue();
             }
         }
     }
@@ -60,26 +65,36 @@ public class TextTrigger : MonoBehaviour
         }
     }
 
+    public void ToggleDialogue()
+    {
+        isVisible = !isVisible; // Toggles visibility of dialogue
+        if (requiresFocus) { GlobalVariables.focusLocked = !GlobalVariables.focusLocked; } // Forces the player to stop moving
+        dialogueBox.gameObject.SetActive(isVisible); // Sets visiblity of dialogue box
+        StopAllCoroutines(); //Stops all previous coroutines
+        StartCoroutine(Zoom(isVisible ? Vector3.one : Vector3.zero)); // Starts zooming based on current position
+        if (isVisible)
+        {
+            StartCoroutine(TypeText()); // Types out the text slowly at 'textSpeed' speed
+        }
+        else
+        {
+            textComponent.text = "";
+        }
+        
+        
+    }
+
     private IEnumerator TypeText()
     {
         textComponent.text = "";
         for (int i = 0; i < message.Length; i++)
         {
             textComponent.text += message[i];
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(textSpeed);
         }
     }
 
-    public void ToggleDialogue()
-    {
-        isVisible = !isVisible;
-        dialogueBox.gameObject.SetActive(isVisible);
-        StopAllCoroutines();
-        StartCoroutine(Zoom(isVisible ? Vector3.one : Vector3.zero));
-        StartCoroutine(TypeText());
-    }
-    
-    private System.Collections.IEnumerator Zoom(Vector3 targetScale)
+    private IEnumerator Zoom(Vector3 targetScale)
     {
         while (dialogueBox.localScale != targetScale)
         {
