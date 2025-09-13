@@ -11,14 +11,6 @@ public class MainMenu : MonoBehaviour
             }
     }
 
-
-
-    public void PlayGame()
-    {
-        // When they click the button it should make it the next scene // PLEASE KEEP SCENE ORDER CORRECT
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
     public void QuitGame()
     {
         Debug.Log("Quit!"); 
