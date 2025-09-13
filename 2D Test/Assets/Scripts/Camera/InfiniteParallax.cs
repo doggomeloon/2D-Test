@@ -7,7 +7,6 @@ public class InfiniteParallax : MonoBehaviour
     private Vector3 lastCameraPosition;
 
     private float spriteWidth;
-    private Transform[] children;
 
     // Thank you stack overflow for making this work
 

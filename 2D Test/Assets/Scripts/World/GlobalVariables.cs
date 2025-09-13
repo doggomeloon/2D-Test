@@ -7,4 +7,6 @@ public static class GlobalVariables
 
 
     // GAME DATA
+
+
 }
