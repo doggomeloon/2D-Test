@@ -7,6 +7,10 @@ public class PlayerAnimation : MonoBehaviour
     public Sprite[] runRight; // 2 frames
     public Sprite[] runLeft;  // 2 frames
 
+    public Vector2 rightOffset; 
+    public Vector2 leftOffset;
+
+    public Transform spriteHolder;
     private SpriteRenderer sr;
     private float animationTimer = 0f;
     private int currentFrame = 0;
@@ -15,7 +19,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = spriteHolder.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -25,13 +29,29 @@ public class PlayerAnimation : MonoBehaviour
 
         if (moveDir.x > 0) // Moving right
         {
+            if (lastDirection != Vector2.right)
+            {
+                sr.sprite = runRight[0]; // show first running frame immediately
+                currentFrame = 0;
+                animationTimer = 0f;
+            }
+
             Animate(runRight);
             lastDirection = Vector2.right;
+            spriteHolder.localPosition = rightOffset;
         }
         else if (moveDir.x < 0) // Moving left
         {
+            if (lastDirection != Vector2.left)
+            {
+                sr.sprite = runLeft[0]; // show first running frame immediately
+                currentFrame = 0;
+                animationTimer = 0f;
+            }
+
             Animate(runLeft);
             lastDirection = Vector2.left;
+            spriteHolder.localPosition = leftOffset;
         }
         else // Idle
         {
