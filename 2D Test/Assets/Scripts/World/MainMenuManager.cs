@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsButton;
     public GameObject settings;
 
+    public void Start()
+    {
+        settings.SetActive(false);
+    }
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
