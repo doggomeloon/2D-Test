@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4695b5f7badc09b42b04a123f629f4a6
+guid: 8cdfb786c8c4e604d9c1a495e3162ee3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7168540986364394743
-    second: sign_0
+      213: -8628796214823210730
+    second: playSign_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,16 +96,29 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sign_0
+      name: playSign_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 600
+        width: 800
         height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7fcf31aeb06cb7360800000000000000
-      internalID: 7168540986364394743
+      spriteID: 6113a385f8b504880800000000000000
+      internalID: -8628796214823210730
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sign_0: 7168540986364394743
+      playSign_0: -8628796214823210730
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
