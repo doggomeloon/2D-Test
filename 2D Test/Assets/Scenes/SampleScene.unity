@@ -24962,7 +24962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2D
   moveSpeed: 6
-  jumpForce: 12
+  jumpForce: 15
   groundCheck: {fileID: 347608944}
   groundCheckRadius: 0.1
   groundMask:
