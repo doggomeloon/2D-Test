@@ -18,13 +18,13 @@ MonoBehaviour:
         serializedData:
         - key: 0
           value:
-            rid: 1231347807844302848
+            rid: 1231347810031894528
         - key: 1
           value:
-            rid: 1231347807844302849
+            rid: 1231347810031894529
         - key: 2
           value:
-            rid: 1231347807844302850
+            rid: 1231347810031894530
       lastMaterialMappings:
         serializedData:
         - key: Invalid
@@ -61,15 +61,15 @@ MonoBehaviour:
           value: None
         - key: 11
           value: None
-    - rid: 1231347807844302848
+    - rid: 1231347810031894528
       type: {class: ModelSelection, ns: Unity.AI.Material.Services.Stores.States, asm: Unity.AI.Material}
       data:
         modelID: 575ecf67-4425-4939-97b9-5e138b8ee234
-    - rid: 1231347807844302849
+    - rid: 1231347810031894529
       type: {class: ModelSelection, ns: Unity.AI.Material.Services.Stores.States, asm: Unity.AI.Material}
       data:
         modelID: 
-    - rid: 1231347807844302850
+    - rid: 1231347810031894530
       type: {class: ModelSelection, ns: Unity.AI.Material.Services.Stores.States, asm: Unity.AI.Material}
       data:
         modelID: 
