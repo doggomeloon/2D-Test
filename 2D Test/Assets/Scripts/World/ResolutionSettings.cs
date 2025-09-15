@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class ResolutionDropdown : MonoBehaviour
 
     void Start()
     {
+
         // Get all resolutions from the system
         Resolution[] allResolutions = Screen.resolutions;
 
