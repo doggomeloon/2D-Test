@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 109
+  controlID: 112
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -1029,7 +1029,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: eccffffffecfffffbed2ffff36d3ffff38ddffff4addffff0ae0ffff82e0ffff58f0ffff6af0ffff5cf3ffffd4f3fffffcfaffffa81d0100e21d0100
+      m_ExpandedIDs: 68d6ffff7ad6ffff6cd9ffffe6d9ffffd0eaffffe2eaffffdeedffff5eeefffffcfaffff6c060100a6060100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1137,7 +1137,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Sprites/LetterIcons
+    - Assets/Scripts/World
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1147,16 +1147,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Sprites/LetterIcons
+  - Assets/Scripts/World
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\nlgre\Documents\GitHub\Lancers-Stand\Lancers Stand
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 57}
-    m_SelectedIDs: 7c110100
-    m_LastClickedID: 70012
-    m_ExpandedIDs: 00000000cced00007aee00007eee00007611010000ca9a3b
+    scrollPos: {x: 0, y: 133}
+    m_SelectedIDs: b0ee0000
+    m_LastClickedID: 61104
+    m_ExpandedIDs: 00000000cced00007aee00007eee000086ee000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

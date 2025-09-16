@@ -17,7 +17,7 @@ public class SceneFader : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FadeIn()); // When game first opens, fade in
+        StartCoroutine(FadeIn(3)); // When game first opens, fade in
     }
 
     public void FadeToScene(string sceneName)
@@ -25,9 +25,9 @@ public class SceneFader : MonoBehaviour
         StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeIn(int duration = 1)
     {
-        float t = fadeDuration;
+        float t = duration;
         Color color = fadeImage.color;
         color.a = 1f;
         fadeImage.color = color;
@@ -35,7 +35,7 @@ public class SceneFader : MonoBehaviour
         while (t > 0f)
         {
             t -= Time.deltaTime;
-            color.a = Mathf.Clamp01(t / fadeDuration);
+            color.a = Mathf.Clamp01(t / duration);
             fadeImage.color = color;
             yield return null;
         }
