@@ -30,13 +30,13 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded) { lastGroundedTime = Time.time; }
 
             // this should allow jump if a player presses it slightly before landing
-            if (Input.GetKeyDown(KeyCode.Space)) { jumpBufferTime = Time.time; }
+            if (Input.GetKeyDown(GlobalVariables.jumpKey)) { jumpBufferTime = Time.time; }
             
 
             // Horizontal movement
             float moveInput = 0f;
-            if (Input.GetKey(KeyCode.A)) { moveInput -= 1f; }
-            if (Input.GetKey(KeyCode.D)) { moveInput += 1f; }
+            if (Input.GetKey(GlobalVariables.leftKey)) { moveInput -= 1f; }
+            if (Input.GetKey(GlobalVariables.rightKey)) { moveInput += 1f; }
             rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
             // Jump

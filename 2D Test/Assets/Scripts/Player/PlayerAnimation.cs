@@ -24,40 +24,51 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        Vector2 moveDir = new Vector2(moveX, 0);
+        if (!GlobalVariables.focusLocked) {
+            float moveX = 0f;
 
-        if (moveDir.x > 0) // Moving right
-        {
-            if (lastDirection != Vector2.right)
+            if (Input.GetKey(GlobalVariables.leftKey))  
             {
-                sr.sprite = runRight[0]; // show first running frame immediately
-                currentFrame = 0;
+                moveX = -1f;
+            }
+            else if (Input.GetKey(GlobalVariables.rightKey)) 
+            {   
+                moveX = 1f;
+            }
+            Vector2 moveDir = new Vector2(moveX, 0);
+
+            if (moveDir.x > 0) // Moving right
+            {
+                if (lastDirection != Vector2.right)
+                {
+                    sr.sprite = runRight[0]; // show first running frame immediately
+                    currentFrame = 0;
+                    animationTimer = 0f;
+                }
+
+                Animate(runRight);
+                lastDirection = Vector2.right;
+                spriteHolder.localPosition = rightOffset;
+            }
+            else if (moveDir.x < 0) // Moving left
+            {
+                if (lastDirection != Vector2.left)
+                {
+                    sr.sprite = runLeft[0]; // show first running frame immediately
+                    currentFrame = 0;
+                    animationTimer = 0f;
+                }
+
+                Animate(runLeft);
+                lastDirection = Vector2.left;
+                spriteHolder.localPosition = leftOffset;
+            }
+            else // Idle
+            {
+                sr.sprite = (lastDirection == Vector2.right) ? idleRight : idleLeft;
+                currentFrame = 0; // Reset frame index when idle
                 animationTimer = 0f;
             }
-
-            Animate(runRight);
-            lastDirection = Vector2.right;
-            spriteHolder.localPosition = rightOffset;
-        }
-        else if (moveDir.x < 0) // Moving left
-        {
-            if (lastDirection != Vector2.left)
-            {
-                sr.sprite = runLeft[0]; // show first running frame immediately
-                currentFrame = 0;
-                animationTimer = 0f;
-            }
-
-            Animate(runLeft);
-            lastDirection = Vector2.left;
-            spriteHolder.localPosition = leftOffset;
-        }
-        else // Idle
-        {
-            sr.sprite = (lastDirection == Vector2.right) ? idleRight : idleLeft;
-            currentFrame = 0; // Reset frame index when idle
-            animationTimer = 0f;
         }
     }
 

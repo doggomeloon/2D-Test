@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 139286417}
   m_Layer: 0
   m_Name: Sign2_Interact
-  m_TagString: Untagged
+  m_TagString: InteractionBlocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,8 +252,8 @@ Transform:
   m_GameObject: {fileID: 139286415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.98, z: 0}
-  m_LocalScale: {x: 1.15, y: 1.15, z: 1}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1642930068}
@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 524662932}
   m_Layer: 0
   m_Name: Sign_Interact
-  m_TagString: Untagged
+  m_TagString: InteractionBlocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2333,8 +2333,8 @@ Transform:
   m_GameObject: {fileID: 524662930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.004380779, y: 0.87171346, z: 0}
-  m_LocalScale: {x: 1.1194801, y: 1.1950535, z: 1}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1503604510}

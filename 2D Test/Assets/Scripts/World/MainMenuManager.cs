@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class MainMenu : MonoBehaviour
 {
 
@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsButton;
     public GameObject creditsButton;
     public GameObject settings;
+
+    public TMP_Text quitTag;
 
     public void Start()
     {
@@ -42,6 +44,7 @@ public class MainMenu : MonoBehaviour
         creditsButton.SetActive(false);
 
         settings.SetActive(true);
+        quitTag.text = "Press Escape to Return to Menu!";
     }
 
     public void DisableSettings()
@@ -52,5 +55,6 @@ public class MainMenu : MonoBehaviour
         creditsButton.SetActive(true);
 
         settings.SetActive(false);
+        quitTag.text = "Press Escape to Quit!";
     }
 }
