@@ -19,10 +19,17 @@ MonoBehaviour:
         - key: 0
           value:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             rid: 1456394772587741193
         - key: 1
           value:
             rid: 1456394772587741194
+=======
+            rid: 1231347831721164809
+        - key: 1
+          value:
+            rid: 1231347831721164810
+>>>>>>> Stashed changes
 =======
             rid: 1231347831721164809
         - key: 1
@@ -35,11 +42,19 @@ MonoBehaviour:
     version: 2
     RefIds:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 1456394772587741193
       type: {class: ModelSelection, ns: Unity.AI.Animate.Services.Stores.States, asm: Unity.AI.Animate}
       data:
         modelID: a9c27ca4-3ec9-43e8-96cd-ee891aba64c5
     - rid: 1456394772587741194
+=======
+    - rid: 1231347831721164809
+      type: {class: ModelSelection, ns: Unity.AI.Animate.Services.Stores.States, asm: Unity.AI.Animate}
+      data:
+        modelID: a9c27ca4-3ec9-43e8-96cd-ee891aba64c5
+    - rid: 1231347831721164810
+>>>>>>> Stashed changes
 =======
     - rid: 1231347831721164809
       type: {class: ModelSelection, ns: Unity.AI.Animate.Services.Stores.States, asm: Unity.AI.Animate}

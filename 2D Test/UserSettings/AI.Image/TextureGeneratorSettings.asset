@@ -19,6 +19,7 @@ MonoBehaviour:
         - key: 0
           value:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             rid: 1456394772587741187
         - key: 1
           value:
@@ -53,11 +54,30 @@ MonoBehaviour:
           value:
             rid: 1231347831721164808
 >>>>>>> Stashed changes
+=======
+            rid: 1231347831721164803
+        - key: 1
+          value:
+            rid: 1231347831721164804
+        - key: 2
+          value:
+            rid: 1231347831721164805
+        - key: 3
+          value:
+            rid: 1231347831721164806
+        - key: 4
+          value:
+            rid: 1231347831721164807
+        - key: 5
+          value:
+            rid: 1231347831721164808
+>>>>>>> Stashed changes
       previewSettings:
         sizeFactor: 1
   references:
     version: 2
     RefIds:
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - rid: 1456394772587741187
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
@@ -80,6 +100,29 @@ MonoBehaviour:
       data:
         modelID: 
     - rid: 1456394772587741192
+=======
+    - rid: 1231347831721164803
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 1231347831721164804
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 1231347831721164805
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 1231347831721164806
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 1231347831721164807
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 1231347831721164808
+>>>>>>> Stashed changes
 =======
     - rid: 1231347831721164803
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
