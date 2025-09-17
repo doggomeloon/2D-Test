@@ -6,7 +6,10 @@ using System.Collections.Generic;
 
 public class ResolutionDropdown : MonoBehaviour
 {
-    public TMP_Dropdown dropdown; // Assign your TMP Dropdown in the Inspector
+    public TMP_Dropdown resolutionDropdown;
+
+    public TMP_Dropdown screenDropdown;
+    public Toggle vSyncToggle;
     private List<(int width, int height, int hz)> uniqueResolutions;
 
     void Start()
@@ -30,7 +33,7 @@ public class ResolutionDropdown : MonoBehaviour
             .ToList();
 
         // Clear old dropdown options
-        dropdown.ClearOptions();
+        resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
@@ -50,12 +53,14 @@ public class ResolutionDropdown : MonoBehaviour
             }
         }
 
-        dropdown.AddOptions(options);
-        dropdown.value = currentResolutionIndex;
-        dropdown.RefreshShownValue();
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
 
         // Apply resolution on selection
-        dropdown.onValueChanged.AddListener(SetResolution);
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        screenDropdown.onValueChanged.AddListener(index => ChangeScreen(screenDropdown.options[index].text));
+        vSyncToggle.onValueChanged.AddListener(SetVSync);
     }
 
     public void SetResolution(int index)
@@ -66,5 +71,31 @@ public class ResolutionDropdown : MonoBehaviour
         var refreshRate = new RefreshRate { numerator = (uint)chosen.hz, denominator = (uint)1 };
         Screen.SetResolution(chosen.width, chosen.height, Screen.fullScreenMode, refreshRate);
         Debug.Log($"Resolution set to: {chosen.width} x {chosen.height} @{chosen.hz}Hz");
+    }
+
+    public void SetVSync(bool isVSyncEnabled)
+    {
+        if (isVSyncEnabled) { QualitySettings.vSyncCount = 1; }
+        else { QualitySettings.vSyncCount = 0; }
+        
+        Debug.Log("VSync set to: " + (isVSyncEnabled ? "Enabled" : "Disabled"));
+    }
+    
+    public void ChangeScreen(string screenType)
+    {
+        Debug.Log(screenType);
+        switch (screenType)
+        {
+            case "Borderless":
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow; // Should be borderless
+                break;
+            case "Fullscreen":
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; // Should be fullscreen
+                break;
+            case "Windowed":
+                Screen.fullScreenMode = FullScreenMode.Windowed; // I would be amazed if this wasnt windowed
+                break;
+        }
+        Debug.Log(screenType);
     }
 }

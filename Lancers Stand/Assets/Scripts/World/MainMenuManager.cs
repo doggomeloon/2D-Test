@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         settings.SetActive(false);
+        
     }
     public void Update()
     {
@@ -57,4 +58,6 @@ public class MainMenu : MonoBehaviour
         settings.SetActive(false);
         quitTag.text = "Press Escape to Quit!";
     }
+
+    
 }

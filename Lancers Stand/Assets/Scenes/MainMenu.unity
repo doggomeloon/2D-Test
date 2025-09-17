@@ -9188,7 +9188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbb4faadc4f3404ba80a4e6d5feebe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResolutionDropdown
-  dropdown: {fileID: 758933471}
+  resolutionDropdown: {fileID: 758933471}
+  screenDropdown: {fileID: 1772510997}
+  vSyncToggle: {fileID: 1645450861}
 --- !u!114 &1203098143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12196,7 +12198,7 @@ GameObject:
   - component: {fileID: 1645450860}
   - component: {fileID: 1645450861}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: VSyncToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12268,7 +12270,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1203098142}
+        m_TargetAssemblyTypeName: ResolutionDropdown, Assembly-CSharp
+        m_MethodName: SetVSync
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   m_IsOn: 0
 --- !u!1 &1652910241
 GameObject:
@@ -19218,15 +19232,27 @@ MonoBehaviour:
     - m_Text: Fullscreen
       m_Image: {fileID: 0}
       m_Color: {r: 0.7803922, g: 0.6509804, b: 0.45098042, a: 1}
-    - m_Text: Windowed
+    - m_Text: Borderless
       m_Image: {fileID: 0}
       m_Color: {r: 0.7803922, g: 0.6509804, b: 0.45098042, a: 1}
-    - m_Text: Borderless
+    - m_Text: Windowed
       m_Image: {fileID: 0}
       m_Color: {r: 0.7803922, g: 0.6509804, b: 0.45098042, a: 1}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1203098142}
+        m_TargetAssemblyTypeName: ResolutionDropdown, Assembly-CSharp
+        m_MethodName: ChangeScreen
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1772510998
 MonoBehaviour:
