@@ -825,7 +825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347608944}
   - component: {fileID: 347608945}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24944,7 +24944,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &1819816211
 Transform:
   m_ObjectHideFlags: 0
@@ -24975,13 +24975,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2D
   moveSpeed: 6
-  jumpForce: 15
+  minJumpForce: 8
+  maxJumpForce: 16
+  chargeTime: 0.2
+  jumpGraceTime: 0.1
   groundCheck: {fileID: 347608944}
   groundCheckRadius: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  jumpGraceTime: 0.1
 --- !u!114 &1819816214
 MonoBehaviour:
   m_ObjectHideFlags: 0
