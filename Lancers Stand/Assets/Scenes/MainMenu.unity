@@ -12099,15 +12099,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2D
   moveSpeed: 6
-  minJumpForce: 8
-  maxJumpForce: 16
-  chargeTime: 0.2
-  jumpGraceTime: 0.1
+  jumpForce: 15
   groundCheck: {fileID: 597812308}
   groundCheckRadius: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  jumpGraceTime: 0.1
 --- !u!70 &1635368877
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
