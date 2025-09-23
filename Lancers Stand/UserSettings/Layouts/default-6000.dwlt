@@ -274,8 +274,8 @@ MonoBehaviour:
     y: 0
     width: 418
     height: 791
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -356,8 +356,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 202
-    y: 24
+    x: 201
+    y: 89
     width: 819
     height: 555
   m_SerializedDataModeController:
@@ -900,9 +900,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -8.459307, y: -1.6198089, z: -0.067149594}
+    m_Target: {x: 12.013973, y: 2.9162664, z: 0.040158197}
     speed: 2
-    m_Value: {x: -8.459307, y: -1.6198089, z: -0.067149594}
+    m_Value: {x: 12.013973, y: 2.9162664, z: 0.040158197}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -952,9 +952,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 16.723639
+    m_Target: 5.994344
     speed: 2
-    m_Value: 16.723639
+    m_Value: 5.994344
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 89
     width: 200
     height: 555
   m_SerializedDataModeController:
@@ -1029,7 +1029,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b2f2ffffecfaffff
+      m_ExpandedIDs: 0a7fffff6887ffff7ce8fffffcfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1046,7 +1046,7 @@ MonoBehaviour:
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 8}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 605
+    y: 670
     width: 1021
     height: 184
   m_SerializedDataModeController:
@@ -1137,7 +1137,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/TextMesh Pro/Resources/Fonts & Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1147,16 +1147,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/TextMesh Pro/Resources/Fonts & Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/nathanielgreisen/Lancers-Stand/Lancers Stand
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 84ee0000
-    m_LastClickedID: 61060
-    m_ExpandedIDs: 000000000aeb0000
+    scrollPos: {x: 0, y: 140}
+    m_SelectedIDs: 24f50000
+    m_LastClickedID: 62756
+    m_ExpandedIDs: 000000000aeb0000b8eb000026f5000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1283,8 +1283,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1023
-    y: 24
+    x: 1022
+    y: 89
     width: 417
     height: 765
   m_SerializedDataModeController:
@@ -1305,7 +1305,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 974
+  m_LastVerticalScrollValue: 203.39996
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
