@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     public Vector2 leftOffset;
 
     public Transform spriteHolder;
+    public Transform attackBox;
     private SpriteRenderer sr;
     private float animationTimer = 0f;
     private int currentFrame = 0;
@@ -49,6 +50,7 @@ public class PlayerAnimation : MonoBehaviour
                 Animate(runRight);
                 lastDirection = Vector2.right;
                 spriteHolder.localPosition = rightOffset;
+                attackBox.localPosition = new Vector3(0.0618f, -0.067f, 0f);
             }
             else if (moveDir.x < 0) // Moving left
             {
@@ -62,6 +64,7 @@ public class PlayerAnimation : MonoBehaviour
                 Animate(runLeft);
                 lastDirection = Vector2.left;
                 spriteHolder.localPosition = leftOffset;
+                attackBox.localPosition = new Vector3(-0.267f, -0.067f, 0f);
             }
             else // Idle
             {

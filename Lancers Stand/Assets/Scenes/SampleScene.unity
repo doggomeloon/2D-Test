@@ -3381,7 +3381,7 @@ RectTransform:
   m_GameObject: {fileID: 961342896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2015362253}
@@ -25302,7 +25302,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25323,7 +25323,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.85, y: 5.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2015362253}
@@ -25345,8 +25345,11 @@ MonoBehaviour:
   player: {fileID: 1819816207}
   enemy: {fileID: 1741157505}
   healthText: {fileID: 961342898}
-  knockbackStrength: 10
+  knockbackStrength: 5
+  knockbackUpwardForce: 5
+  knockbackDuration: 0.5
   hitCooldown: 1
+  followSpeed: 3
 --- !u!70 &1741157511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -25357,7 +25360,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a7677238d3380e64695d7f69f1bc92fe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -25507,6 +25510,7 @@ MonoBehaviour:
   rightOffset: {x: 0, y: 0}
   leftOffset: {x: -0.205, y: 0}
   spriteHolder: {fileID: 201388888}
+  attackBox: {fileID: 478995483}
   frameRate: 0.2
 --- !u!70 &1819816216
 CapsuleCollider2D:

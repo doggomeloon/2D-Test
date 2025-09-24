@@ -6,9 +6,9 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Physics Material
+  m_Name: EnemyPhysics
   serializedVersion: 2
-  friction: 0
+  friction: 10
   bounciness: 0
-  m_FrictionCombine: 1
+  m_FrictionCombine: 0
   m_BounceCombine: 4
