@@ -8,6 +8,8 @@ public class MenuParallax : MonoBehaviour
     private float spriteWidth;
     private Vector3 startPos;
 
+
+    //TODO: Fix this whole thing because there are occasional gaps
     void Start()
     {
         startPos = transform.position;

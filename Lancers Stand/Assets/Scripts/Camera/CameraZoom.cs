@@ -21,12 +21,12 @@ public class CameraZoom : MonoBehaviour
         } 
 
         // Zooming in and out w keyboard
-        if (Input.GetKey(KeyCode.Equals)) // '=' key
+        if (Input.GetKey(GlobalVariables.zoomInKey)) // '=' key
         {
             //Same function as before but with '=' and '-' keys
             cam.orthographicSize = Mathf.Max(minZoom, cam.orthographicSize - zoomSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.Minus)) // '-' key
+        if (Input.GetKey(GlobalVariables.zoomOutKey)) // '-' key
         {
             cam.orthographicSize = Mathf.Min(maxZoom, cam.orthographicSize + zoomSpeed * Time.deltaTime);
         }

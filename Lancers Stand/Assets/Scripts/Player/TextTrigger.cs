@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using Unity.AppUI.UI;
 using UnityEngine.UI;
 
 public class TextTrigger : MonoBehaviour

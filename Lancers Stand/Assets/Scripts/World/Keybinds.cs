@@ -11,6 +11,8 @@ public class Keybinds : MonoBehaviour
     public GameObject jumpIcon;
     public GameObject sprintIcon;
     public GameObject interactIcon;
+    public GameObject zoomOutIcon;
+    public GameObject zoomInIcon;
 
     private Image focusedImage;   // highlight the currently editing key
 
@@ -42,10 +44,6 @@ public class Keybinds : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// Called when a UI button is pressed
-    /// </summary>
     public void EditKeybind(string key)
     {
         if (GlobalVariables.currentlyEditing == key)
@@ -67,6 +65,8 @@ public class Keybinds : MonoBehaviour
                 case "jump": focusedImage = jumpIcon.GetComponent<Image>(); break;
                 case "sprint": focusedImage = sprintIcon.GetComponent<Image>(); break;
                 case "interact": focusedImage = interactIcon.GetComponent<Image>(); break;
+                case "zoomIn": focusedImage = zoomInIcon.GetComponent<Image>(); break;
+                case "zoomOut": focusedImage = zoomOutIcon.GetComponent<Image>(); break;
             }
 
             Sprite emptySprite = Resources.Load<Sprite>("Sprites/LetterIcons/Empty");
@@ -76,9 +76,6 @@ public class Keybinds : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Assigns the new key to the action
-    /// </summary>
     private void ApplyKeybind(string action, KeyCode newKey)
     {
         Debug.Log($"Assigned {newKey} to {action}");
@@ -100,6 +97,12 @@ public class Keybinds : MonoBehaviour
             case "interact":
                 GlobalVariables.interactKey = newKey;
                 break;
+            case "zoomIn":
+                GlobalVariables.interactKey = newKey;
+                break;
+            case "zoomOut":
+                GlobalVariables.interactKey = newKey;
+                break;
         }
         Sprite newSprite = Resources.Load<Sprite>("Sprites/LetterIcons/" + newKey.ToString());
         focusedImage.sprite = newSprite;
@@ -107,9 +110,7 @@ public class Keybinds : MonoBehaviour
         rt.sizeDelta = new Vector2(newSprite.texture.width*2, newSprite.texture.height*2);
     }
 
-    /// <summary>
-    /// Reset editing state
-    /// </summary>
+
     private void CancelEditing()
     {
         GlobalVariables.currentlyEditing = "";
@@ -117,9 +118,6 @@ public class Keybinds : MonoBehaviour
         focusedImage = null;
     }
 
-    /// <summary>
-    /// Detects which KeyCode was pressed
-    /// </summary>
     private KeyCode DetectPressedKey()
     {
         foreach (KeyCode code in System.Enum.GetValues(typeof(KeyCode)))
