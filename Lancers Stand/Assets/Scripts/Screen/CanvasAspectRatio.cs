@@ -22,14 +22,16 @@ public class CanvasAspectRatio : MonoBehaviour
             // Keep 16:9 baseline
             scaler.referenceResolution = new Vector2(2560, 1440);
 
+            // Im specifically allowing 16:10 bc my laptop is,
+            // but most computers have 16:9 ratio
             if (Mathf.Abs(aspect - (16f / 10f)) < 0.01f)
             {
-                // On 16:10 screen (like 2560x1600) → stretch to fill
+                // On 16:10 screen
                 scaler.matchWidthOrHeight = 0f; // match width
             }
             else
             {
-                // On 16:9 or others → balanced scaling
+                // On 16:9 or others
                 scaler.matchWidthOrHeight = 0.5f;
             }
         }

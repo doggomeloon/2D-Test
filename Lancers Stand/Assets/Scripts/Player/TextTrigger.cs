@@ -22,9 +22,6 @@ public class TextTrigger : MonoBehaviour
 
     public bool requiresFocus = false; //If true, the player will be unable to move while interacted
 
-
-
-
     void Start()
     {
         textComponent = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
