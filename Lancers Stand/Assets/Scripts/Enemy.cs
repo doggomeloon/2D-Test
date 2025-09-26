@@ -37,11 +37,30 @@ public class Enemy : MonoBehaviour
     public enum EnemyAIOptions { Follow, Slime }
     public EnemyAIOptions enemyAI;
 
+    [Header("Animation")]
+    public Sprite idleRight;
+    public Sprite idleLeft;
+    public Sprite[] runRight; // 2 frames
+    public Sprite[] runLeft;  // 2 frames
+
+    public Vector2 rightOffset;
+    public Vector2 leftOffset;
+
+    public Transform spriteHolder;
+    private SpriteRenderer sr;
+    private float animationTimer = 0f;
+    private int currentFrame = 0;
+    public float frameRate = 0.2f; // Time per frame
+    private Vector2 lastDirection = Vector2.right;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         collide = enemy.GetComponent<Collider2D>();
         attackCollider = player.GetComponentInChildren<Collider2D>();
+
+        sr = spriteHolder.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -76,6 +95,10 @@ public class Enemy : MonoBehaviour
             }
         }
 
+
+
+        facingDetection();
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -106,7 +129,7 @@ public class Enemy : MonoBehaviour
                 // I dont think the player is correctly getting knocked back because of player movement,
                 // but honestly its not a big deal and I can ignore it for now but eventually fixing it would be cool
                 Vector2 playerKnockbackDirection = (player.transform.position - enemy.transform.position).normalized;
-                
+
                 Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
                 Vector2 playerKnockback = new Vector2(playerKnockbackDirection.x * playerKnockbackStrength, playerKnockbackUpwardForce);
                 playerRb.linearVelocity = Vector2.zero;
@@ -131,17 +154,17 @@ public class Enemy : MonoBehaviour
     public void ApplyKnockback(Vector2 direction, float force)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        
+
         // Disable following temporarily to allow knockback to work
         isKnockedBack = true;
         Invoke(nameof(EndKnockback), knockbackDuration);
-        
+
         // Stop current movement and apply knockback
         rb.linearVelocity = Vector2.zero;
         Vector2 totalKnockback = new Vector2(direction.x * force, knockbackUpwardForce);
         rb.AddForce(totalKnockback, ForceMode2D.Impulse);
     }
-    
+
     private void EndKnockback()
     {
         isKnockedBack = false;
@@ -152,13 +175,13 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Vector3 currentPosition = enemy.transform.position;
         Vector3 playerPosition = player.transform.position;
-        
+
         // Calculate direction to player
         Vector2 directionToPlayer = (playerPosition - currentPosition).normalized;
-        
+
         // Apply horizontal force to move towards player
         rb.AddForce(new Vector2(directionToPlayer.x * followSpeed, 0), ForceMode2D.Force);
-        
+
         Vector2 velocity = rb.linearVelocity;
         velocity.x = Mathf.Clamp(velocity.x, -followSpeed, followSpeed);
         rb.linearVelocity = velocity;
@@ -167,11 +190,62 @@ public class Enemy : MonoBehaviour
     public void StopFollowing()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        
+
         // Gradually reduce horizontal velocity to make the enemy stop smoothly
         Vector2 velocity = rb.linearVelocity;
         velocity.x = Mathf.MoveTowards(velocity.x, 0, followSpeed * 2f * Time.deltaTime);
         rb.linearVelocity = velocity;
+    }
+
+
+
+
+    void facingDetection()
+    {
+
+        if (enemy.transform.position.x < player.transform.position.x) // Moving right
+        {
+            if (lastDirection != Vector2.right)
+            {
+                sr.sprite = runRight[0]; // show first running frame immediately
+                currentFrame = 0;
+                animationTimer = 0f;
+            }
+
+            Animate(runRight);
+            lastDirection = Vector2.right;
+            spriteHolder.localPosition = rightOffset;
+        }
+        else if (enemy.transform.position.x > player.transform.position.x) // Moving left
+        {
+            if (lastDirection != Vector2.left)
+            {
+                sr.sprite = runLeft[0]; // show first running frame immediately
+                currentFrame = 0;
+                animationTimer = 0f;
+            }
+
+            Animate(runLeft);
+            lastDirection = Vector2.left;
+            spriteHolder.localPosition = leftOffset;
+        }
+        else // Idle
+        {
+            sr.sprite = (lastDirection == Vector2.right) ? idleRight : idleLeft;
+            currentFrame = 0; // Reset frame index when idle
+            animationTimer = 0f;
+        }
+    }
+    
+    void Animate(Sprite[] frames)
+    {
+        animationTimer += Time.deltaTime;
+        if (animationTimer >= frameRate)
+        {
+            animationTimer = 0f;
+            currentFrame = (currentFrame + 1) % frames.Length;
+            sr.sprite = frames[currentFrame];
+        }
     }
 
 }

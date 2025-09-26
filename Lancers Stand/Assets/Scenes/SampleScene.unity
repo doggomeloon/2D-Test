@@ -1933,7 +1933,7 @@ GameObject:
   - component: {fileID: 415672308}
   - component: {fileID: 415672307}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MessageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 447829029}
   - component: {fileID: 447829028}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2850,7 +2850,7 @@ GameObject:
   - component: {fileID: 575184102}
   - component: {fileID: 575184101}
   m_Layer: 5
-  m_Name: TextPanel
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24971,12 +24971,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5893679650a7144495098e5a01bacb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextTrigger
-  dialogueBox: {fileID: 154626637}
+  dialogueBox: {fileID: 1036075749}
   textBox: {fileID: 2058939662}
   interactButton: {fileID: 524662930}
   message: This is a bunch of text that should be slowly typing itself out
   portraitPanel: {fileID: 1120157693}
   portrait: {fileID: 1652771774, guid: 5fe5454ec8605de43809133b020d1b69, type: 3}
+  characterName: Sign 1
+  nameBox: {fileID: 575184099}
   zoomSpeed: 8
   textSpeed: 0.03
   requiresFocus: 0
@@ -25236,13 +25238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5893679650a7144495098e5a01bacb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextTrigger
-  dialogueBox: {fileID: 154626637}
+  dialogueBox: {fileID: 1036075749}
   textBox: {fileID: 2058939662}
   interactButton: {fileID: 139286415}
   message: This is a second sign that has a lot more text that might accidentally
     overlap somewhere else and I'm not exactly sure where it is going to go
   portraitPanel: {fileID: 1120157693}
   portrait: {fileID: 1074053915, guid: 5fe5454ec8605de43809133b020d1b69, type: 3}
+  characterName: Sign 2
+  nameBox: {fileID: 575184099}
   zoomSpeed: 8
   textSpeed: 0.01
   requiresFocus: 1
@@ -25582,6 +25586,18 @@ MonoBehaviour:
   followSpeed: 3
   viewDistance: 10
   enemyAI: 0
+  idleRight: {fileID: 21300000, guid: 14a7e2aee8db2f446827b6bdd6e74c7c, type: 3}
+  idleLeft: {fileID: 21300000, guid: 1b03713420421684584adcc71bc89cfd, type: 3}
+  runRight:
+  - {fileID: 21300000, guid: 74d8156bba3b38a44aabf102a80fe77a, type: 3}
+  - {fileID: 21300000, guid: 53bbfdbe5667cb14cbbb666a428f5c8b, type: 3}
+  runLeft:
+  - {fileID: 21300000, guid: 98116c5e3a3aef6448ef1f084626f759, type: 3}
+  - {fileID: 21300000, guid: 64b2fcf7d8cc98e409fde728f5f893b7, type: 3}
+  rightOffset: {x: 0, y: 0}
+  leftOffset: {x: 0, y: 0}
+  spriteHolder: {fileID: 2109488178}
+  frameRate: 0.2
 --- !u!70 &1741157511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -27736,7 +27752,7 @@ GameObject:
   - component: {fileID: 2058939665}
   - component: {fileID: 2058939664}
   m_Layer: 5
-  m_Name: TextPanel
+  m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

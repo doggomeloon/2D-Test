@@ -14,6 +14,10 @@ public class TextTrigger : MonoBehaviour
 
     public Sprite portrait; // Character Image
 
+    public string characterName;
+    public GameObject nameBox;
+    private TextMeshProUGUI nameComponent;
+
     private bool isInArea = false;
     public float zoomSpeed = 8f;
 
@@ -24,9 +28,12 @@ public class TextTrigger : MonoBehaviour
 
     void Start()
     {
-        textComponent = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
+        textComponent = textBox.GetComponentInChildren<TextMeshProUGUI>();
+        nameComponent = nameBox.GetComponentInChildren<TextMeshProUGUI>();
         dialogueBox.gameObject.SetActive(false); // hide at start
         interactButton.SetActive(false);
+
+        dialogueBox.localScale = Vector3.zero;
     }
 
     void Update()
@@ -65,6 +72,9 @@ public class TextTrigger : MonoBehaviour
     {
         isVisible = !isVisible; // Toggles visibility of dialogue
         if (requiresFocus) { GlobalVariables.focusLocked = !GlobalVariables.focusLocked; } // Forces the player to stop moving
+
+        nameComponent.text = characterName; // Sets name text
+
         dialogueBox.gameObject.SetActive(isVisible); // Sets visiblity of dialogue box
         StopAllCoroutines(); //Stops all previous coroutines
         StartCoroutine(Zoom(isVisible ? Vector3.one : Vector3.zero)); // Starts zooming based on current position
