@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
     void Attack(Collider2D other)
     {
         // Check for player hitting enemy
-        if (other.CompareTag("PlayerAttack") && GlobalVariables.isAttacking)
+        if (other.CompareTag("PlayerAttack") && GlobalVariables.isDamaging)
         {
             // Check cooldown to prevent multiple hits
             if (Time.time - playerLastHitTime > playerHitCooldown)
@@ -332,7 +332,7 @@ public class Enemy : MonoBehaviour
 
         spriteHolder.localPosition = (lastDirection == Vector2.right) ? rightOffset : leftOffset;
     }
-    
+
     void Animate(Sprite[] frames)
     {
         animationTimer += Time.deltaTime;
@@ -343,5 +343,7 @@ public class Enemy : MonoBehaviour
             sr.sprite = frames[currentFrame];
         }
     }
+    
+    
 
 }

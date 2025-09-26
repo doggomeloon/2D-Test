@@ -6,7 +6,8 @@ public static class GlobalVariables
     public static double health = 5.0;
     public static double maxHealth = 5.0;
     public static bool focusLocked = false;
-    public static bool isAttacking = false;
+    public static bool isAttacking = false; // Animation
+    public static bool isDamaging = false; // Only 2 attack frames will actually deal damage
 
 
     // GAME DATA

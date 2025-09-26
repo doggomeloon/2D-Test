@@ -38,7 +38,8 @@ public class Attack : MonoBehaviour
     private System.Collections.IEnumerator AttackAnimationSequence()
     {
         float frameDuration = attackAnimationDuration / 4f; // 4 transitions (1->2->3->2->1)
-        
+
+        GlobalVariables.isDamaging = true;
         // 1 -> 2
         spriteRenderer.sprite = attackSprite1;
         yield return new WaitForSeconds(frameDuration);
@@ -47,6 +48,8 @@ public class Attack : MonoBehaviour
         spriteRenderer.sprite = attackSprite2;
         yield return new WaitForSeconds(frameDuration);
         
+        GlobalVariables.isDamaging = false;
+
         // 3 -> 2
         spriteRenderer.sprite = attackSprite1;
         yield return new WaitForSeconds(frameDuration);
