@@ -6,6 +6,7 @@ public static class GlobalVariables
     public static double health = 5.0;
     public static double maxHealth = 5.0;
     public static bool focusLocked = false;
+    public static bool isAttacking = false;
 
 
     // GAME DATA
@@ -22,8 +23,8 @@ public static class GlobalVariables
     public static KeyCode leftKey = KeyCode.A;
     public static KeyCode rightKey = KeyCode.D;
     public static KeyCode jumpKey = KeyCode.Space;
-    public static KeyCode sprintKey = KeyCode.LeftShift;
     public static KeyCode interactKey = KeyCode.F;
+    public static KeyCode attackKey = KeyCode.E; 
     public static KeyCode zoomInKey = KeyCode.Equals;
     public static KeyCode zoomOutKey = KeyCode.Minus;
 

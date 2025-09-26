@@ -25,7 +25,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        if (!GlobalVariables.focusLocked) {
+        if (!GlobalVariables.focusLocked && !GlobalVariables.isAttacking) {
             float moveX = 0f;
 
             if (Input.GetKey(GlobalVariables.leftKey))  

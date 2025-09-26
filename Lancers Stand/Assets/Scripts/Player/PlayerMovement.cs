@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
             // this should allow jump if a player presses it slightly before landing
             if (Input.GetKeyDown(GlobalVariables.jumpKey)) { jumpBufferTime = Time.time; }
-            
+
 
             // Horizontal movement
             float moveInput = 0f;
@@ -42,9 +42,13 @@ public class PlayerMovement : MonoBehaviour
             // Jump
             if (Time.time - jumpBufferTime < jumpGraceTime && Time.time - lastGroundedTime < jumpGraceTime)
             {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            jumpBufferTime = -999f; // Prevent double jump
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                jumpBufferTime = -999f; // Prevent double jump
             }
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
         
     }

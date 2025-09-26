@@ -9,7 +9,7 @@ public class Keybinds : MonoBehaviour
     public GameObject leftIcon;
     public GameObject rightIcon;
     public GameObject jumpIcon;
-    public GameObject sprintIcon;
+    public GameObject attackIcon;
     public GameObject interactIcon;
     public GameObject zoomOutIcon;
     public GameObject zoomInIcon;
@@ -63,7 +63,7 @@ public class Keybinds : MonoBehaviour
                 case "left": focusedImage = leftIcon.GetComponent<Image>(); break;
                 case "right": focusedImage = rightIcon.GetComponent<Image>(); break;
                 case "jump": focusedImage = jumpIcon.GetComponent<Image>(); break;
-                case "sprint": focusedImage = sprintIcon.GetComponent<Image>(); break;
+                case "attack": focusedImage = attackIcon.GetComponent<Image>(); break;
                 case "interact": focusedImage = interactIcon.GetComponent<Image>(); break;
                 case "zoomIn": focusedImage = zoomInIcon.GetComponent<Image>(); break;
                 case "zoomOut": focusedImage = zoomOutIcon.GetComponent<Image>(); break;
@@ -91,8 +91,8 @@ public class Keybinds : MonoBehaviour
             case "jump":
                 GlobalVariables.jumpKey = newKey;
                 break;
-            case "sprint":
-                GlobalVariables.sprintKey = newKey;
+            case "attack":
+                GlobalVariables.attackKey = newKey;
                 break;
             case "interact":
                 GlobalVariables.interactKey = newKey;

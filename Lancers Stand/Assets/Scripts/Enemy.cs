@@ -8,15 +8,15 @@ public class Enemy : MonoBehaviour
 
     [Header("Objects")]
     public GameObject player;
-
-    private Collider2D attackCollider;
     public GameObject enemy;
-    private Collider2D collide;
     public TextMeshProUGUI healthText;
+    private Rigidbody2D rb;
 
-    [Header("Knockback (player=player->enemy, enemy = enemy->player)")]
+    [Header("Knockback (player=player->enemy, enemy = enemy->player)")] // idk why i made this so confusing
+    // Player to enemy knockback
     public float knockbackStrength = 5f;
     public float knockbackUpwardForce = 5f; // Add vertical jump to knockback
+    // Enemy to player knockback
     public float playerKnockbackStrength = 5f; // Amount that player gets knocked back
     public float playerKnockbackUpwardForce = 5f; // Add vertical jump to knockback
     private Vector2 knockbackDirection;
@@ -37,7 +37,15 @@ public class Enemy : MonoBehaviour
     public enum EnemyAIOptions { Follow, Slime }
     public EnemyAIOptions enemyAI;
 
-    [Header("Animation")]
+    // Slime Stuff
+    public float jumpForce = 7f; // Vertical distance
+    public float jumpHorizontalSpeed = 3f; //Horizontal Distance
+    public float jumpInterval = 2f; // Time between jumps
+    private float jumpTimer; // Curernt time
+
+    private bool wasGrounded = true;
+
+    [Header("Animation (General)")]
     public Sprite idleRight;
     public Sprite idleLeft;
     public Sprite[] runRight; // 2 frames
@@ -53,14 +61,24 @@ public class Enemy : MonoBehaviour
     public float frameRate = 0.2f; // Time per frame
     private Vector2 lastDirection = Vector2.right;
 
+    [Header("Animation (slime-specific)")]
+    public Sprite aboutToJumpRight;
+    public Sprite aboutToJumpLeft;
+    public Sprite inAirRight;
+    public Sprite inAirLeft;
+    public float aboutToJumpTime = 0.25f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        collide = enemy.GetComponent<Collider2D>();
-        attackCollider = player.GetComponentInChildren<Collider2D>();
 
+        rb = GetComponent<Rigidbody2D>();
         sr = spriteHolder.GetComponent<SpriteRenderer>();
+
+        //more slime stuff
+        jumpTimer = jumpInterval;
+        wasGrounded = IsGrounded();
     }
 
     // Update is called once per frame
@@ -69,6 +87,16 @@ public class Enemy : MonoBehaviour
         healthText.text = health.ToString();
 
         knockbackDirection = (enemy.transform.position - player.transform.position).normalized;
+
+
+        // More more slime stuff to ensure it is able to jump
+        jumpTimer -= Time.deltaTime;
+        bool grounded = IsGrounded();
+        if (grounded && !wasGrounded)
+        {
+            rb.linearVelocity = Vector2.zero;
+            jumpTimer = jumpInterval;
+        }
 
         // Only follow/stop if not currently knocked back
         if (!isKnockedBack)
@@ -82,29 +110,48 @@ public class Enemy : MonoBehaviour
                     case EnemyAIOptions.Follow:
                         FollowPlayer();
                         break;
+
+                    case EnemyAIOptions.Slime:
+                        if (jumpTimer <= 0f && grounded)
+                        {
+                            SlimeFollow();
+                        }
+                        break;
                 }
             }
             else
             {
-                switch (enemyAI)
-                {
-                    case EnemyAIOptions.Follow:
-                        StopFollowing();
-                        break;
-                }
+                StopFollowing();
             }
         }
 
+        if (enemyAI == EnemyAIOptions.Slime)
+        {
+            SlimeFacingAndAnimation(grounded);
+        }
+        else
+        {
+            FacingDetection();
+        }
 
-
-        facingDetection();
+        wasGrounded = grounded;
 
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Attack(other);
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        Attack(other);
+    }
+
+    void Attack(Collider2D other)
+    {
         // Check for player hitting enemy
-        if (other.CompareTag("PlayerAttack"))
+        if (other.CompareTag("PlayerAttack") && GlobalVariables.isAttacking)
         {
             // Check cooldown to prevent multiple hits
             if (Time.time - playerLastHitTime > playerHitCooldown)
@@ -140,22 +187,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // While they are overlapping
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        // Once they leave
-    }
-
 
     public void ApplyKnockback(Vector2 direction, float force)
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        // Disable following temporarily to allow knockback to work
+        // Disable other movement temporarily to allow knockback to work
         isKnockedBack = true;
         Invoke(nameof(EndKnockback), knockbackDuration);
 
@@ -172,7 +208,6 @@ public class Enemy : MonoBehaviour
 
     public void FollowPlayer()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Vector3 currentPosition = enemy.transform.position;
         Vector3 playerPosition = player.transform.position;
 
@@ -189,52 +224,113 @@ public class Enemy : MonoBehaviour
 
     public void StopFollowing()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        // Gradually reduce horizontal velocity to make the enemy stop smoothly
+        // Gradually reduce horizontal velocity
         Vector2 velocity = rb.linearVelocity;
         velocity.x = Mathf.MoveTowards(velocity.x, 0, followSpeed * 2f * Time.deltaTime);
         rb.linearVelocity = velocity;
     }
 
+    public void SlimeFollow()
+    {
+        float direction = Mathf.Sign(player.transform.position.x - enemy.transform.position.x);
+        if (direction == 0f) direction = (transform.localScale.x >= 0) ? 1f : -1f;
+
+        // Set deterministic horizontal speed for the jump (prevents sliding leftover)
+        rb.linearVelocity = new Vector2(direction * jumpHorizontalSpeed, 0f);
+
+        // Apply vertical impulse
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+    }
+
+    bool IsGrounded()
+    {
+        // If the velocity is tiny then it is probably on the groun
+        return Mathf.Abs(rb.linearVelocity.y) < 0.05f;
+    }
 
 
-
-    void facingDetection()
+    void FacingDetection()
     {
 
-        if (enemy.transform.position.x < player.transform.position.x) // Moving right
+        float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
+        if (distance < viewDistance)
         {
-            if (lastDirection != Vector2.right)
+
+            if (enemy.transform.position.x < player.transform.position.x) // Moving right
             {
-                sr.sprite = runRight[0]; // show first running frame immediately
-                currentFrame = 0;
+                if (lastDirection != Vector2.right)
+                {
+                    sr.sprite = runRight[0]; // show first running frame immediately
+                    currentFrame = 0;
+                    animationTimer = 0f;
+                }
+
+                Animate(runRight);
+                lastDirection = Vector2.right;
+                spriteHolder.localPosition = rightOffset;
+            }
+            else if (enemy.transform.position.x > player.transform.position.x) // Moving left
+            {
+                if (lastDirection != Vector2.left)
+                {
+                    sr.sprite = runLeft[0]; // show first running frame immediately
+                    currentFrame = 0;
+                    animationTimer = 0f;
+                }
+
+                Animate(runLeft);
+                lastDirection = Vector2.left;
+                spriteHolder.localPosition = leftOffset;
+            }
+            else // Idle
+            {
+                sr.sprite = (lastDirection == Vector2.right) ? idleRight : idleLeft;
+                currentFrame = 0; // Reset frame index when idle
                 animationTimer = 0f;
             }
-
-            Animate(runRight);
-            lastDirection = Vector2.right;
-            spriteHolder.localPosition = rightOffset;
         }
-        else if (enemy.transform.position.x > player.transform.position.x) // Moving left
-        {
-            if (lastDirection != Vector2.left)
-            {
-                sr.sprite = runLeft[0]; // show first running frame immediately
-                currentFrame = 0;
-                animationTimer = 0f;
-            }
-
-            Animate(runLeft);
-            lastDirection = Vector2.left;
-            spriteHolder.localPosition = leftOffset;
-        }
-        else // Idle
+        else
         {
             sr.sprite = (lastDirection == Vector2.right) ? idleRight : idleLeft;
             currentFrame = 0; // Reset frame index when idle
             animationTimer = 0f;
         }
+    }
+
+    void SlimeFacingAndAnimation(bool grounded)
+    {
+        // Slime facing
+        if (enemy.transform.position.x < player.transform.position.x)
+            lastDirection = Vector2.right;
+        else if (enemy.transform.position.x > player.transform.position.x)
+            lastDirection = Vector2.left;
+
+        // please work
+        if (grounded)
+        {
+            if (jumpTimer <= aboutToJumpTime)
+            {
+                // about to jump
+                sr.sprite = (lastDirection == Vector2.right) ? aboutToJumpRight : aboutToJumpLeft;
+            }
+            else
+            {
+                // idle 
+                sr.sprite = (lastDirection == Vector2.right) ? idleRight : idleLeft;
+            }
+
+            // reset animation
+            currentFrame = 0;
+            animationTimer = 0f;
+        }
+        else
+        {
+            // in air
+            sr.sprite = (lastDirection == Vector2.right) ? inAirRight : inAirLeft;
+        }
+
+        spriteHolder.localPosition = (lastDirection == Vector2.right) ? rightOffset : leftOffset;
     }
     
     void Animate(Sprite[] frames)
